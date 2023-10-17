@@ -40,25 +40,23 @@ class _playersPage extends State<PlayersPage> {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // List of players
               ListView.builder(
                 shrinkWrap: true,
+                physics: BouncingScrollPhysics(),
                 itemCount: _players.length,
                 itemBuilder: (context, index) {
                   return Card(
-                    child: Column(
-                      children: [
-                        Text("team: ${_players[index].team.abbreviation}"),
-                        ListTile(
-                          title: Text("Player:${_players[index].firstName} ${_players[index].lastName} ",style: TextStyle(color: Colors.black),),
-                          subtitle: Text("Position ${_players[index].position}"),
-                          
-                          // Add any additional player information you want to display
-                        ),
-                      ],
+                    child: ListTile(
+                      title: Text("Player:${_players[index].firstName} ${_players[index].lastName} ",style: TextStyle(color: Colors.black),),
+                      subtitle: Text("Position ${_players[index].position}"),
+                      trailing: Text("team: ${_players[index].team.abbreviation}"),
+                      
+                      // Add any additional player information you want to display
                     ),
                   );
                 },
