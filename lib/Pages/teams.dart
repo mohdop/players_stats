@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:players_stats/Model/players_model.dart';
-import 'package:players_stats/Services/PlayersServices.dart';
+import 'package:players_stats/Model/team_model.dart';
 
-class PlayersPage extends StatefulWidget {
-  const PlayersPage({Key? key}) : super(key: key);
+import '../Services/TeamServices.dart';
+
+class TeamPage extends StatefulWidget {
+  const TeamPage({Key? key}) : super(key: key);
 
   @override
-  State<PlayersPage> createState() => _playersPage();
+  State<TeamPage> createState() => _teamPage();
 }
 
-class _playersPage extends State<PlayersPage> {
-  final _playerService = PlayerServices();
+class _teamPage extends State<TeamPage> {
+  final _teamServices = TeamServices();
 
-  List<Player> _players = []; // List of players instead of Weather object
+  List<Team> _teams = []; // List of players instead of Weather object
 
   // Fetch players
   _fetchPlayers() async {
     try {
       // get players
-      final players = await _playerService.getPlayers("searchTerm");
+      final players = await _teamServices.getTeams();
       print("Player Data: $players"); // Add this line
       setState(() {
-        _players = players;
+        _teams = players;
       });
     } catch (e) {
       print("Error fetching players: $e"); // Add this line
@@ -38,9 +39,7 @@ class _playersPage extends State<PlayersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: (){
-        Navigator.pushNamed(context, "/teams");
-      }  ),
+      
       body: Center(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -51,7 +50,7 @@ class _playersPage extends State<PlayersPage> {
               ListView.builder(
                 shrinkWrap: true,
                 physics: BouncingScrollPhysics(),
-                itemCount: _players.length,
+                itemCount: _teams.length,
                 itemBuilder: (context, index) {
                   return Card(
                     shape: RoundedRectangleBorder(
@@ -60,12 +59,12 @@ class _playersPage extends State<PlayersPage> {
                     ),
                     child: ListTile(
                       title: Text(
-                        "Player:${_players[index].firstName} ${_players[index].lastName} ",
+                        "${_teams[index].city} ${_teams[index].abbreviation} ",
                         style: TextStyle(color: Colors.black),
                       ),
-                      subtitle: Text("Position ${_players[index].position}"),
+                      subtitle: Text(" ${_teams[index].conference}ern conference"),
                       trailing:
-                          Text("team: ${_players[index].team.abbreviation}"),
+                          Text(" ${_teams[index].abbreviation}"),
 
                       // Add any additional player information you want to display
                     ),

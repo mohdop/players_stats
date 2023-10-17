@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:players_stats/Pages/Players.dart';
+import 'package:players_stats/Pages/teams.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
      debugShowCheckedModeBanner: false,
       home: PlayersPage(),
+      routes: {
+        '/home': (context) => PlayersPage(),
+        "/teams":(context) => TeamPage()
+      },
     );
   }
 }
