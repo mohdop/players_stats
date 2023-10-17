@@ -39,7 +39,11 @@ class _teamPage extends State<TeamPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.sports),
+          onPressed: () {
+            Navigator.pushNamed(context, "/home");
+          }),
       body: Center(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -62,9 +66,9 @@ class _teamPage extends State<TeamPage> {
                         "${_teams[index].city} ${_teams[index].abbreviation} ",
                         style: TextStyle(color: Colors.black),
                       ),
-                      subtitle: Text(" ${_teams[index].conference}ern conference"),
-                      trailing:
-                          Text(" ${_teams[index].abbreviation}"),
+                      subtitle:
+                          Text(" ${_teams[index].conference}ern conference"),
+                      trailing: Text(" ${_teams[index].abbreviation}"),
 
                       // Add any additional player information you want to display
                     ),

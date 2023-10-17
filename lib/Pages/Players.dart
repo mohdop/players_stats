@@ -38,9 +38,11 @@ class _playersPage extends State<PlayersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: (){
-        Navigator.pushNamed(context, "/teams");
-      }  ),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.group),
+          onPressed: () {
+            Navigator.pushNamed(context, "/teams");
+          }),
       body: Center(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
