@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:players_stats/Model/players_model.dart';
+import 'package:players_stats/Pages/Player_info.dart';
 import 'package:players_stats/Services/PlayersServices.dart';
 
 class PlayersPage extends StatefulWidget {
+  
   const PlayersPage({Key? key}) : super(key: key);
 
   @override
@@ -37,7 +39,13 @@ class _playersPage extends State<PlayersPage> {
 
   @override
   Widget build(BuildContext context) {
+    print("Building PlayersPage");
     return Scaffold(
+       appBar: AppBar(
+        
+        title: Text("NBA Players",style: TextStyle(fontWeight: FontWeight.bold),),
+        centerTitle: true,
+      ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.group),
           onPressed: () {
@@ -55,21 +63,31 @@ class _playersPage extends State<PlayersPage> {
                 physics: BouncingScrollPhysics(),
                 itemCount: _players.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                          10.0), // Adjust the border radius as needed
+                  return GestureDetector(
+                     onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PlayerInfo(player: _players[index]),
                     ),
-                    child: ListTile(
-                      title: Text(
-                        "Player:${_players[index].firstName} ${_players[index].lastName} ",
-                        style: TextStyle(color: Colors.black),
+                  );
+                },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                            10.0), // Adjust the border radius as needed
                       ),
-                      subtitle: Text("Position ${_players[index].position}"),
-                      trailing:
-                          Text("team: ${_players[index].team.abbreviation}"),
-
-                      // Add any additional player information you want to display
+                      child: ListTile(
+                        title: Text(
+                          "Player:${_players[index].firstName} ${_players[index].lastName} ",
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        subtitle: Text("Position ${_players[index].position}"),
+                        trailing:
+                            Text("team: ${_players[index].team.abbreviation}"),
+                  
+                        // Add any additional player information you want to display
+                      ),
                     ),
                   );
                 },
