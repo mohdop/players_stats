@@ -40,8 +40,10 @@ class _teamPage extends State<TeamPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
-        title: Text("NBA Teams",style: TextStyle(fontWeight: FontWeight.bold),),
+        title: Text(
+          "NBA Teams",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(

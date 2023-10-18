@@ -4,7 +4,6 @@ import 'package:players_stats/Pages/Player_info.dart';
 import 'package:players_stats/Services/PlayersServices.dart';
 
 class PlayersPage extends StatefulWidget {
-  
   const PlayersPage({Key? key}) : super(key: key);
 
   @override
@@ -41,9 +40,11 @@ class _playersPage extends State<PlayersPage> {
   Widget build(BuildContext context) {
     print("Building PlayersPage");
     return Scaffold(
-       appBar: AppBar(
-        
-        title: Text("NBA Players",style: TextStyle(fontWeight: FontWeight.bold),),
+      appBar: AppBar(
+        title: Text(
+          "NBA Players",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
@@ -64,14 +65,15 @@ class _playersPage extends State<PlayersPage> {
                 itemCount: _players.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                     onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PlayerInfo(player: _players[index]),
-                    ),
-                  );
-                },
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              PlayerInfo(player: _players[index]),
+                        ),
+                      );
+                    },
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
@@ -85,7 +87,7 @@ class _playersPage extends State<PlayersPage> {
                         subtitle: Text("Position ${_players[index].position}"),
                         trailing:
                             Text("team: ${_players[index].team.abbreviation}"),
-                  
+
                         // Add any additional player information you want to display
                       ),
                     ),
