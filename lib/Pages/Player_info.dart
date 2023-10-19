@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -5,6 +7,7 @@ import '../Model/players_model.dart';
 
 class PlayerInfo extends StatefulWidget {
   final Player player;
+ 
 
   const PlayerInfo({Key? key, required this.player}) : super(key: key);
 
@@ -13,8 +16,17 @@ class PlayerInfo extends StatefulWidget {
 }
 
 class _PlayerInfoState extends State<PlayerInfo> {
+  
   @override
   Widget build(BuildContext context) {
+    int heightInfeet = widget.player.height_feet;
+    int heightInches = widget.player.height_inches;
+    String message="";
+    if (heightInches==0 ||  heightInches == 0) {
+      message = "not known";
+    }else{
+      message= "$heightInfeet'$heightInches\"";
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
@@ -42,7 +54,7 @@ class _PlayerInfoState extends State<PlayerInfo> {
                         ]),
                     TableRow(children: [
                       _buildTableCell(
-                          "${widget.player.height_feet}' ${widget.player.height_inches}",
+                          "$message",
                           Colors.black),
                       _buildTableCell(
                           "${widget.player.position}", Colors.black),
