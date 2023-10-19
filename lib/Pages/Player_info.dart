@@ -22,11 +22,12 @@ class _PlayerInfoState extends State<PlayerInfo> {
     int heightInfeet = widget.player.height_feet;
     int heightInches = widget.player.height_inches;
     String message="";
-    if (heightInches==0 ||  heightInches == 0) {
-      message = "not known";
+    if (heightInfeet==0) {
+      message= "size not known";
     }else{
-      message= "$heightInfeet'$heightInches";
+      message="$heightInfeet'$heightInches";
     }
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
