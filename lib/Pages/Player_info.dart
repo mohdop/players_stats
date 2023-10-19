@@ -25,7 +25,7 @@ class _PlayerInfoState extends State<PlayerInfo> {
     if (heightInches==0 ||  heightInches == 0) {
       message = "not known";
     }else{
-      message= "$heightInfeet'$heightInches\"";
+      message= "$heightInfeet'$heightInches";
     }
     return Scaffold(
       body: SingleChildScrollView(
